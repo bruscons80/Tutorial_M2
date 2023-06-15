@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            color: #f0f0f0;
+        }
+        .resume {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #333;
+            padding: 30px;
+            box-shadow: 0px 0px 10px rgba(0,255,0,0.5);
+            border-radius: 15px;
+        }
+        .photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #00ff00;
+        }
+        .name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00ff00;
+            text-shadow: 0px 0px 10px #00ff00;
+        }
+        .contact-info {
+            font-size: 16px;
+            color: #aaa;
+        }
+        .section {
+            margin-top: 20px;
+        }
+        .section h2 {
+            font-size: 24px;
+            color: #00ff00;
+            border-bottom: 2px solid #00ff00;
+            display: inline-block;
+        }
+        .section p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        /*tablet */
+        @media (max-width: 768px) {
+            .resume {
+                width: 90%;
+            }
+            .name {
+                font-size: 28px;
+            }
+            .section h2 {
+                font-size: 20px;
+            }
+            .section p {
+                font-size: 14px;
+            }
+        }
+
+        /* celular*/
+        @media (max-width: 480px) {
+            .resume {
+                width: 100%;
+                padding: 20px;
+            }
+            .name {
+                font-size: 24px;
+            }
+            .section h2 {
+                font-size: 18px;
+            }
+            .section p {
+                font-size: 12px;
+            }
+        }
+        #jokeButton, #quoteButton {
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 12px;
+            box-shadow: 0 9px #999;
+        }
+
+        #jokeButton:hover, #quoteButton:hover {
+            background-color: #3e8e41;
+            color: white;
+        }
+
+        #jokeButton:active, #quoteButton:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+    </style>
+    <script>
+    $(document).ready(function(){
+        $("#jokeButton").click(function(){
+            $.ajax({
+                url: "https://official-joke-api.appspot.com/jokes/programming/random",
+                type: "GET",
+                success: function(result){
+                    alert(result[0].setup + "\n" + result[0].punchline);
+                },
+                error: function(error){
+                    console.log(`Error: ${error}`);
+                }
+            });
+        });
+
+    $("#quoteButton").click(function(){
+            $.ajax({
+                url: "https://api.quotable.io/random?tags=technology",
+                type: "GET",
+                success: function(result){
+                    alert(result.content + "\n- " + result.author);
+                },
+                error: function(error){
+                    console.log(`Error: ${error}`);
+                }
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="resume">
+        <div class="resume">
+            <img src="BRUNO1.jpg" class="photo">
+            <div class="name">Bruno Disca</div>
+            <div class="contact-info">
+                <p>Email: brunodisca@gmail.com</p>
+                <p>Telefone: (11) 81123-5668</p>
+            </div>
+            <div class="section">
+                <h2>Sobre mim</h2>
+                <p>Com mais de uma década de experiência em desenvolvimento de software, tenho uma paixão profunda por resolver problemas complexos com tecnologia. Meu foco está na criação de soluções eficientes e escaláveis, utilizando as melhores práticas e padrões de design. Estou sempre buscando novos desafios e oportunidades para expandir minhas habilidades e contribuir para projetos inovadores.</p>
+            </div>
+            <div class="section">
+                <h2>Experiência Profissional</h2>
+                <p>Desenvolvedor Sênior na Google (5 anos)</p</div>
+                <p>10 anos de experiência em desenvolvimento de software</p>
+            </div>
+            <div class="section">
+                <h2>Educação</h2>
+                <p>Ciência da Computação(2005-2009)</p>
+                <p>Mestrado em Inteligência Artificial(2010-2013)</p>
+                <p>PhD em Stanford(2014-2018)</p>
+            </div>
+            <div class="section">
+                <h2>Habilidades</h2>
+                <p>Desenvolvimento em Python, Java e C++</p>
+                <p>Experiência com Machine Learning e Deep Learning</p>
+                <p>Fluente em Inglês e Espanhol</p>
+           </div>
+        </div>
+        <button id="jokeButton">Clique para uma piada de programação</button>
+        <button id="quoteButton">Clique para uma citação de programação</button>
+    </div>
+</body>
+</html>
